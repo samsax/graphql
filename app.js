@@ -2,6 +2,7 @@ const { GraphQLServer } = require('graphql-yoga');
 const { importSchema } = require('graphql-import');
 
 const typeDefs = importSchema('./schema.graphql');
+const resolvers =  require('./resolvers');
 
 const mongoose = require('mongoose');
 

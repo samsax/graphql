@@ -1,4 +1,44 @@
 
+type Query{
+	getAllUsers:[User]!
+	getUserByEmail(email:String!):User
+	getUserById(id:ID!):User!
+}
+
+type Mutation{
+	createUser(user:createUser!):User!
+}
+
+type User {
+	_id:ID!
+	email:String!
+	password:String!
+	phone:String!
+	name:String!
+	photo_url:String
+	direction:Direction
+	is_active:Boolean
+}
+
+type Direction{
+	type:String!
+	coordinates:[Float]!
+}
+
+input createUser{
+	email:String!
+	password:String!
+	phone:String!
+	name:String!
+	photo_url:String
+	direction:createDirection
+}
+
+input createDirection{
+	type:String!
+	coordinates:[Float]!
+}
+
 # type Query{
 # 	saludo(nombre:String!):Int! 
 # 	allPeople:[Persona]!
