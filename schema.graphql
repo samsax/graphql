@@ -1,0 +1,24 @@
+
+# type Query{
+# 	saludo(nombre:String!):Int! 
+# 	allPeople:[Persona]!
+# 	singlePerson(position:Int!):Persona
+# }
+
+# type Mutation{
+# 	addPeople(data:createPersona!):Persona!
+# }
+
+# type Persona {
+# 	nombre:String!
+# 	apellidos:String!
+# 	edad:Int
+# }
+
+# input createPersona{
+# 	nombre:String!
+# 	apellidos:String!
+# 	edad:Int
+# }
+
+
