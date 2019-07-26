@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node app.js",
-	"dev":"nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "graphql-import": "^0.7.1",
+    "graphql-scalars": "^0.4.6",
     "graphql-yoga": "^1.18.1",
     "mongoose": "^5.6.6"
   },
