@@ -3,10 +3,12 @@ type Query{
 	getAllUsers:[User]!
 	getUserByEmail(email:String!):User
 	getUserById(id:ID!):User!
+    getAllStores:[Store]!
 }
 
 type Mutation{
 	createUser(user:createUser!):User!
+    createStore(store:createStore!):Store!
 }
 
 type User {
@@ -18,6 +20,16 @@ type User {
 	photo_url:String
 	direction:Direction
 	is_active:Boolean
+}
+
+type Store {
+	_id:ID!
+	name:String!
+    direction:Direction
+	category:String!
+	phone:String!
+	score:Int
+	logo_url:String
 }
 
 type Direction{
@@ -32,6 +44,15 @@ input createUser{
 	name:String!
 	photo_url:String
 	direction:createDirection
+}
+
+input createStore{
+	name:String!
+    direction:createDirection
+	category:String!
+	phone:String!
+	score:Int
+	logo_url:String
 }
 
 input createDirection{

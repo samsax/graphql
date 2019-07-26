@@ -6,7 +6,7 @@ const resolvers =  require('./resolvers');
 
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://prueba2:prueba2@cluster0-vp6hz.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://default:default@cluster0-dwgru.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(MONGO_URI, { useNewUrlParser: true });
 const mongo = mongoose.connection;
 mongo.on('error', err => console.log(err)).once('open', () => console.log('Database connected succesfully'));

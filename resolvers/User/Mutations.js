@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User,Store } = require('../../models');
 
 // TODO: Pasar los parametros de graphql
 
@@ -9,6 +9,13 @@ const createUser = async (root, args, context, info) => {
   return myUser;
 };
 
+const createStore = async (root, args, context, info) => {
+  const { store } = args;
+  const newStore = Store(store);
+  const myStore = await newStore.save();
+  return myStore;
+};
+
 // Login -> Juntos como hermanos
 
 // Modificar usuario
@@ -17,4 +24,5 @@ const createUser = async (root, args, context, info) => {
 
 module.exports = {
   createUser,
+  createStore,
 };

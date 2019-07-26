@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User, Store } = require('../../models');
 
 // TODO: Pasar los parametros de graphql
 
@@ -22,8 +22,15 @@ const getUserById = async (root,args) => {
   return user;
 };
 
+const getAllStores = async () => {
+  const store = await Store.find({}).exec();
+  if (!store) throw new Error('Error en las tiendas');
+  return store;
+};
+
 module.exports = {
   getAllUsers,
   getUserByEmail,
   getUserById,
+  getAllStores,
 };
