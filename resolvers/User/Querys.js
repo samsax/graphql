@@ -22,8 +22,14 @@ const getUserById = async (root,args) => {
   return user;
 };
 
+
+const me = async (root, args, context) =>{
+	return context.user;
+}
+
 module.exports = {
   getAllUsers,
   getUserByEmail,
   getUserById,
+  me
 };
