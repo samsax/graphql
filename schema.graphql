@@ -9,6 +9,12 @@ type Query{
 
 type Mutation{
 	createUser(user:createUser!):User!
+	login(email:String!,password:String!):Auth!
+}
+
+type Auth{
+	token:String!,
+	message:String!
 }
 
 type User {
@@ -25,6 +31,30 @@ type User {
 type Direction{
 	type:String!
 	coordinates:[Float]!
+}
+
+type Location{
+	type:String!,
+	coordinates:[[[Float]]]!
+}
+
+type Zone {
+	zone:String!
+	location:Location!
+	price:Float!
+	is_active:Boolean
+}
+
+input createZone{
+	zone:String!
+	location:Location!
+	price:Float!
+	is_active:Boolean
+}
+
+input createLocation{
+	type:String!,
+	coordinates:[[[Float]]]!
 }
 
 input createUser{

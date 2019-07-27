@@ -1,10 +1,11 @@
+require('dotenv').config();
 const { GraphQLServer } = require('graphql-yoga');
 const { importSchema } = require('graphql-import');
 
 const typeDefs = importSchema('./schema.graphql');
-const resolvers =  require('./resolvers');
-
 const mongoose = require('mongoose');
+const resolvers = require('./resolvers');
+
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://prueba2:prueba2@cluster0-vp6hz.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(MONGO_URI, { useNewUrlParser: true });
