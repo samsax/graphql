@@ -36,20 +36,20 @@ input updateLocation{
 	coordinates:[[[Float!]]]
 }
 
-enum Category{
-	COMIDARAPIDA
-	REGIONAL
-	VEGETARIANA
-}
+# enum Category{
+# 	COMIDARAPIDA
+# 	REGIONAL
+# 	VEGETARIANA
+# }
 
 
-input Store{
-	products:[Products]!
-}
+# input Store{
+# 	products:[Products]!
+# }
 
-type Products{
-	name
-	price
-	slot
-}
+# type Products{
+# 	name
+# 	price
+# 	slot
+# }
 
