@@ -1,3 +1,5 @@
+#import User,createUser,updateOneUser from './schemas/user.graphql'
+#import Zone,createZone,updateZone from './schemas/zone.graphql'
 scalar EmailAddress
 directive @auth on FIELD_DEFINITION | FIELD
 
@@ -6,11 +8,18 @@ type Query{
 	getUserByEmail(email:EmailAddress!):User
 	getUserById(id:ID!):User!
 	me:User! @auth
+	getAllZones:[Zone]!
+	getZoneById(id:ID!):Zone!
 }
 
 type Mutation{
 	createUser(user:createUser!):User!
 	login(email:String!,password:String!):Auth!
+	updateUser(data:updateOneUser!):User! @auth
+	deleteUser:String! @auth
+	createOneZone(data:createZone):Zone!
+	updateOneZone(id:ID!,data:updateZone):Zone!
+	deleteZone(id:ID!):String!
 }
 
 type Auth{
@@ -18,37 +27,7 @@ type Auth{
 	message:String!
 }
 
-type User {
-	_id:ID!
-	email:String!
-	password:String!
-	phone:String!
-	name:String!
-	photo_url:String
-	direction:Direction
-	is_active:Boolean
-}
 
-type Direction{
-	type:String!
-	coordinates:[Float]!
-}
-
-
-
-input createUser{
-	email:String!
-	password:String!
-	phone:String!
-	name:String!
-	photo_url:String
-	direction:createDirection
-}
-
-input createDirection{
-	type:String!
-	coordinates:[Float]!
-}
 
 # type Query{
 # 	saludo(nombre:String!):Int! 

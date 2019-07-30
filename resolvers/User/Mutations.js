@@ -19,11 +19,27 @@ const login = async(root, args, context, info) => {
 	}
 }
 
-// Modificar usuario
+const updateUser = async(root, args, context) => {
+	const { _id } = context.user
+	const { data } = args
+	const user =  await User.findById(_id);
+	//User.findByIdAndUpdate()
+	Object.keys(data).map( key => user[key] = data[key] )
+	const updatedUser =  await user.save({new:true})
+	return updatedUser;
+}
+
+const deleteUser =  async(root,args,context) => {
+	const { _id } = context.user 
+	await User.findByIdAndUpdate(_id,{is_active:false},{new:true});
+	return "User deleted successfully"
+}
 
 // borrar usuario (Logico)
 
 module.exports = {
 	createUser,
-	login
+	login,
+	updateUser,
+	deleteUser
 };
