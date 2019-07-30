@@ -16,7 +16,7 @@ input createZone{
 	zone:String!
 	location:createLocation
 	price:Float!
-	category:Category
+	#category:Category
 }
 
 input createLocation{
