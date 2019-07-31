@@ -1,10 +1,18 @@
 const { User } = require('../../models');
 const authenticate =  require('../../utils/authenticate');
+const storage =  require('../../utils/storage');
 
 // TODO: Pasar los parametros de graphql
 
 const createUser = async (root, args, context, info) => {
   const { user } = args;
+
+  if(user.photo_url){
+	const { createReadStream } = await user.photo_url
+	const stream = createReadStream();
+	const { url } = await storage({ stream })
+	user.photo_url = url;
+  }
   const newUser = User(user);
   const myUser = await newUser.save();
   return myUser;

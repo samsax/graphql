@@ -1,3 +1,5 @@
+scalar Upload
+
 type User {
 	_id:ID!
 	email:String!
@@ -19,7 +21,7 @@ input createUser{
 	password:String!
 	phone:String!
 	name:String!
-	photo_url:String
+	photo_url:Upload
 	direction:createDirection
 }
 
