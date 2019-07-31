@@ -10,7 +10,6 @@ const createUser = async (root, args, context, info) => {
   return myUser;
 };
 
-<<<<<<< HEAD
 const createStore = async (root, args, context, info) => {
   const { store } = args;
   const newStore = Store(store);
