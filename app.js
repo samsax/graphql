@@ -48,3 +48,7 @@ const server = new GraphQLServer({
 });
 
 server.start(() => console.log('Works in port 4000'));
+
+module.exports = {
+	schema
+};

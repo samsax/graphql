@@ -1,10 +1,12 @@
+scalar Upload
+
 type User {
 	_id:ID!
 	email:String!
 	password:String!
 	phone:String!
 	name:String!
-	photo_url:String
+	photo_url:Upload
 	direction:Direction
 	is_active:Boolean
 }
@@ -19,7 +21,7 @@ input createUser{
 	password:String!
 	phone:String!
 	name:String!
-	photo_url:String
+	photo_url:Upload
 	direction:createDirection
 }
 
@@ -28,7 +30,7 @@ input updateOneUser{
 	password:String
 	phone:String
 	name:String
-	photo_url:String
+	photo_url:Upload
 	direction:createDirection,
 	is_active:Boolean
 }
