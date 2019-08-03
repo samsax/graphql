@@ -34,7 +34,8 @@ const StoreSchema = new mongoose.Schema({
     required: true,
   },
   score: {
-    type: Number,
+	type: Number,
+	default:5.0
   },
   logo_url: {
     type: String,
@@ -60,6 +61,10 @@ const StoreSchema = new mongoose.Schema({
       },
     ],
   },
+  is_active:{
+	  type:Boolean,
+	  default:true
+  }
 }, { timestamps: true });
 
 const Store = mongoose.model('Store', StoreSchema);

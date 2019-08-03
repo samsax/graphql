@@ -1,12 +1,15 @@
+require('dotenv').config();
 const { GraphQLServer } = require('graphql-yoga');
 const { importSchema } = require('graphql-import');
+const { makeExecutableSchema } = require('graphql-tools');
 
 const typeDefs = importSchema('./schema.graphql');
-const resolvers =  require('./resolvers');
-
 const mongoose = require('mongoose');
+const resolvers = require('./resolvers');
+const AuthDirective = require('./directives/AuthDirective');
+const verifyToken = require('./utils/verifyToken');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://prueba2:prueba2@cluster0-vp6hz.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://default:default@cluster0-dwgru.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(MONGO_URI, { useNewUrlParser: true });
 const mongo = mongoose.connection;
 mongo.on('error', err => console.log(err)).once('open', () => console.log('Database connected succesfully'));
@@ -31,6 +34,21 @@ mongo.on('error', err => console.log(err)).once('open', () => console.log('Datab
 // context: Es un objeto global en el cual todos los resolvers se comunican  sirve para AUTH
 //info: Es la forma 'textual' de como se envio el query o mutaion
 
-const server = new GraphQLServer({ typeDefs, resolvers });
+const schema = makeExecutableSchema({
+	typeDefs,
+	resolvers,
+	schemaDirectives:{
+	 auth:AuthDirective
+	}
+})
+
+const server = new GraphQLServer({
+	schema,
+	context: async({request})=> verifyToken(request)
+});
 
 server.start(() => console.log('Works in port 4000'));
+
+module.exports = {
+	schema
+};
