@@ -47,7 +47,16 @@ const server = new GraphQLServer({
 	context: async({request})=> verifyToken(request)
 });
 
-server.start(() => console.log('Works in port 4000'));
+const options = {
+	port:process.env.PORT || 4000,
+	cors:{
+		"origin":"*"
+	}
+}
+
+server.start(options,() => console.log('Works in port ${port}'));
+
+
 
 module.exports = {
 	schema
